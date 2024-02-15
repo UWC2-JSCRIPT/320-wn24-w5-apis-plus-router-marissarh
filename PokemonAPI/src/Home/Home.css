@@ -1,9 +1,0 @@
-.title{
-    font-size: 40px;
-    justify-content: center;
-    padding: 20px 20px;
-}
-.pokemon-data{
-    display: grid;
-    grid-template-columns: 2fr 2fr 2fr;
-}

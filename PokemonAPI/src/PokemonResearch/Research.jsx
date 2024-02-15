@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
     })
         
     }
+    useEffect(()=>{
+        getPokemon();
+    },[]);
+
+    
     return(
         <>
         <div>Pokemon List</div>
@@ -21,7 +26,7 @@ import PropTypes from 'prop-types'
         <br/>
         <pre>{JSON.stringify(results, null, 2)}</pre>
         </>
-    )
+    );
     }
  
 export default Research 
