@@ -4,16 +4,23 @@ import PropTypes from 'prop-types'
 
 
  function Research(){
+    const [results, setResults]= useState();
     const getPokemon = () => {
         fetch('https://pokeapi.co/api/v2/pokemon')
         .then((response) => response.json())
-        .then((data)=> console.log(data))
+        .then((data)=> {
+        console.log(data);
+        setResults(data);
+    })
         
     }
     return(
         <>
         <div>Pokemon List</div>
-        <button onClick={getPokemon}>Research Pokemon</button></>
+        <button onClick={getPokemon}>Research Pokemon</button>
+        <br/>
+        <pre>{JSON.stringify(results, null, 2)}</pre>
+        </>
     )
     }
  
