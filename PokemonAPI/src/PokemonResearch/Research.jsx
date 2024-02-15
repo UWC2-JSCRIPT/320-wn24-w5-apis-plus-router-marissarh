@@ -1,35 +1,24 @@
-import {React, useState, useEffect, Component } from 'react'
+import {React, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 
 
- export default function Research({Pokemon}){
-    
-    const [results, setResults] = useState(null);
-    
-    const [isLoading, setIsLoading]= useState(true);
-    
-    useEffect(()=>{
-        fetch('https://pokeapi.co/api/v2/pokemon/')
-        .then( res=> res.json())
-        .then(data => {setResults(data);
-        setIsLoading(false);
-    })}, [])
-
-    console.log(results);
-    if (isLoading) {
-        return(<h1>Loading...</h1>)
+ function Research(){
+    const getPokemon = () => {
+        fetch('https://pokeapi.co/api/v2/pokemon')
+        .then((response) => response.json())
+        .then((data)=> console.log(data))
+        
     }
     return(
         <>
-    <h1>Pokemon:{results.Pokemon}</h1>
-    </>
+        <div>Pokemon List</div>
+        <button onClick={getPokemon}>Research Pokemon</button></>
     )
     }
+ 
+export default Research 
 
- Research.propTypes={
-    Pokemon: PropTypes.string
- }
 /*function Research() {
     
     const [pokemon, setPokemon] = useState([])
@@ -39,5 +28,4 @@ import PropTypes from 'prop-types'
   
   
     */
-
  
