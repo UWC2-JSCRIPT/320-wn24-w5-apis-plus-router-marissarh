@@ -1,1 +1,8 @@
 
+.pages{
+    list-style-type: none;
+}
+.pages li {
+    display: inline;
+    margin-right: 10px;
+}

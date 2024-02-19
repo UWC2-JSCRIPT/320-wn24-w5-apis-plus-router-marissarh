@@ -12,13 +12,13 @@ function App() {
     
       <div>
           <nav>
-            <ul>
+            <ul className='pages'>
               <li><Link to ="/">Home</Link></li>
               <li><Link to="/all-pokemon">All Pokemon</Link></li>
             </ul>
           </nav>
       <Routes>
-      <Route path="/Home" element={<Home/>}/>
+      <Route path="/" element={<Home/>}/>
       <Route path="/pokemon/:id" element={<Research/>}/>
       <Route path="/all-pokemon" element={<AllPokemonPage/>}/>
       </Routes>
