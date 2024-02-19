@@ -6,7 +6,12 @@ import PokemonList from '../PokemonList/PokemonList';
 function Home() {
     const [searchPokemon, setSearchPokemon] =useState([]);
     const [pokemonList, setPokemonList] = useState([]);
+    const viewPokemon = useNavigate();
     const navigate = useNavigate();
+    
+    const getAllPokemon = () => {
+        viewPokemon('/all-pokemon');
+    };
 
     const getPokemon = async () => {
         try {
@@ -34,6 +39,7 @@ function Home() {
     }}/>
     <button onClick={getPokemon}>Search</button>
     <PokemonList pokemonList={pokemonList}/>
+    <button onClick={getAllPokemon}>View All Pokemon</button>
         </div>
   )
 }
