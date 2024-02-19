@@ -1,43 +1,46 @@
-import {React, useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import {React, useState, useEffect} from 'react'
+import { useParams } from 'react-router-dom';
+import './Research.css'
+import PokemonDetails from '../PokemonDetails/PokemonDetails';
 
 
 
  function Research(){
-    const [results, setResults]= useState();
-    const getPokemon = () => {
-        fetch('https://pokeapi.co/api/v2/pokemon')
-        .then((response) => response.json())
-        .then((data)=> {
-        console.log(data);
-        setResults(data);
-    })
-        
-    }
-    useEffect(()=>{
-        getPokemon();
-    },[]);
+        const {id} = useParams();
+        const [pokemonData, setPokemonData] = useState(null);
+        const [error, setError] = useState(null);
 
-    
-    return(
-        <>
-        <div>Pokemon List</div>
-        <button onClick={getPokemon}>Research Pokemon</button>
-        <br/>
-        <pre>{JSON.stringify(results, null, 2)}</pre>
-        </>
-    );
-    }
- 
+        useEffect(()=>{
+          const fetchPokemon = async () => {
+            try {
+                const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+                if (!response.ok){
+                    throw new Error('Pokemon not found');
+                }
+                const data = await response.json();
+                setPokemonData(data);
+                setError(null);
+              } catch(error){
+                    console.error('Error fetching Pokemon:', error);
+                    setError('Pokemon not found');
+                }}; 
+                fetchPokemon();
+              }, [id]);
+                
+
+        return (
+          <>
+          <div>
+            {error ? ( 
+            <p>{error}</p>) : (
+         <div className='stats' >
+          {pokemonData  && <PokemonDetails pokemon={pokemonData}/>}     
+         </div>
+            )}
+            </div>
+         </>
+        );
+      
+            }
 export default Research 
 
-/*function Research() {
-    
-    const [pokemon, setPokemon] = useState([])
-    const [homePageUrl, setHomePageUrl] =useState("https://pokeapi.co/api/v2/pokemon")
-    const [nextPageUrl, setNextPageUrl] =useState()
-    const [previousPageUrl, setPreviousPageUrl] =useState()
-  
-  
-    */
- 

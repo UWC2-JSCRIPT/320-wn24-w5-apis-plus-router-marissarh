@@ -1,30 +1,23 @@
-import { React, useEffect, useState } from 'react'
+import React from 'react'
+import Home from './Home/Home'
 import './App.css'
+import { Routes, Route} from 'react-router-dom';
+import Research from './PokemonResearch/Research';
 
-function App(){
-  const [pokemonName, setPokemonName] = useState();
-  const getPokemon = () => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-    .then((response) => response.json())
-    .then((data)=> {
-    console.log(data);
-    
-})
-    
-}
-useEffect(()=>{
-    getPokemon();
-},[]);
+
+function App() {
   return (
     <>
-    <div className='search'>
-    <h1 >Search for Pokemon</h1>
-    <input type='text' onChange={(event)=>{setPokemonName(event.target.value);
-    }}/>
-    <button onClick={getPokemon}>Search</button>
-   </div> 
-   </>
-  );
+    
+    <div>
+      <Routes>
+      <Route path="/Home" element={<Research/>}/>
+      <Route path="/pokemon/:id" element={<Home/>}/>
+      </Routes>
+    </div>
+    
+    </>
+  )
 }
 
 export default App
